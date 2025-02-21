@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Layered Image Gallery</title>
+    <style>
+        .gallery-container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: auto;
+        }
+        .gallery-container img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            transition: z-index 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <img src="image1.jfif" alt="Image 1" onclick="bringToFront(this)">
+        <img src="image2.jfif" alt="Image 2" onclick="bringToFront(this)">
+        <img src="image3.jfif" alt="Image 3" onclick="bringToFront(this)">
+    </div>
+
+    <script>
+        function bringToFront(element) {
+            // Get all images in the gallery
+            const images = document.querySelectorAll('.gallery-container img');
+            let maxZIndex = 0;
+
+            // Find the current maximum z-index
+            images.forEach(img => {
+                const zIndex = parseInt(window.getComputedStyle(img).zIndex, 10);
+                if (zIndex > maxZIndex) {
+                    maxZIndex = zIndex;
+                }
+            });
+
+            // Increment the max z-index and set it to the clicked image
+            element.style.zIndex = maxZIndex + 1;
+        }
+    </script>
+</body>
+</html>
