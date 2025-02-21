@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-State Dropdown</title>
+</head>
+<body>
+    <label for="country">Select Country:</label>
+    <select id="country" onchange="populateStates()">
+        <option value="">--Select Country--</option>
+    </select>
+
+    <label for="state">Select State:</label>
+    <select id="state">
+        <option value="">--Select State--</option>
+    </select>
+
+    <script>
+        const countries = {
+            "USA": ["California", "Texas", "New York"],
+            "India": ["Maharashtra", "Gujarat", "Tamil Nadu"],
+            "UK": ["England", "Scotland", "Wales"]
+        };
+
+        const countryDropdown = document.getElementById('country');
+        const stateDropdown = document.getElementById('state');
+
+        // Populate country dropdown
+        for (let country in countries) {
+            let option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            countryDropdown.appendChild(option);
+        }
+
+        // Populate states based on selected country
+        function populateStates() {
+            let selectedCountry = countryDropdown.value;
+            stateDropdown.innerHTML = '<option value="">--Select State--</option>'; // Reset state dropdown
+            
+            if (selectedCountry) {
+                let states = countries[selectedCountry];
+                states.forEach(state => {
+                    let option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateDropdown.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
