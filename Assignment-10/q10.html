@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .todo-container {
+            width: 300px;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .todo-item button {
+            margin-left: 10px;
+        }/*23BPS1089*/
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <input type="text" id="todo-input" placeholder="Add a new task">
+        <button id="add-btn">Add</button>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const addButton = document.getElementById('add-btn');
+            const todoInput = document.getElementById('todo-input');
+            const todoList = document.getElementById('todo-list');
+
+            addButton.addEventListener('click', () => {
+                const task = todoInput.value.trim();
+                if (task) {
+                    addTodoItem(task);
+                    todoInput.value = '';
+                }
+            });
+
+            function addTodoItem(task) {
+                const listItem = document.createElement('li');
+                listItem.className = 'todo-item';
+                listItem.textContent = task;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => {
+                    todoList.removeChild(listItem);
+                });
+
+                listItem.appendChild(removeButton);
+                //23bps1184
+                todoList.appendChild(listItem);
+            }
+        });
+    </script>
+</body>
+</html>
