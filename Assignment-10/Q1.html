@@ -1,1 +1,32 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Guessing Game</title>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <p>Guess a number between 1 and 50:</p>
+    <input type="number" id="guess" min="1" max="50">
+    <button onclick="guessNumber()">Submit Guess</button>
+    <p id="result"></p>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 50) + 1;
+        let guess;
+
+        function guessNumber() {
+            guess = parseInt(document.getElementById('guess').value);
+            while (guess !== targetNumber) {
+                if (guess < targetNumber) {
+                    document.getElementById('result').textContent = 'Too low! Try again.';
+                } else if (guess > targetNumber) {
+                    document.getElementById('result').textContent = 'Too high! Try again.';
+                }
+                return; 
+            }
+            document.getElementById('result').textContent = 'Congratulations! You guessed the right number!';
+        }
+    </script>
+</body>
+</html>
