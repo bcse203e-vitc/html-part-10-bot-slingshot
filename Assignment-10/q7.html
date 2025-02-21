@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Textarea Controls</title>
+    <style>
+        .counter {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="input-textarea" rows="10" cols="50" placeholder="Type here..."></textarea>
+    <div class="counter">
+        <p>Character Count: <span id="char-count">0</span></p>
+        <p>Word Count: <span id="word-count">0</span></p>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('input-textarea');
+        const charCount = document.getElementById('char-count');
+        const wordCount = document.getElementById('word-count');
+
+        textarea.addEventListener('input', () => {
+            const text = textarea.value;
+            const charNum = text.length;
+            const wordNum = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+
+            charCount.textContent = charNum;
+            wordCount.textContent = wordNum;
+
+            if (charNum > 200) {
+                alert('You have exceeded the 200 character limit!');
+            }
+        });
+    </script>
+</body>
+</html>
