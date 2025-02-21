@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+</head>
+<body>
+    <h1>Pizza Order Form</h1>
+    <form id="pizza-form">
+        <fieldset>
+            <legend>Select Pizza Size:</legend>
+            <input type="radio" id="small" name="size" value="Small" required>
+            <label for="small">Small</label><br>
+            <input type="radio" id="medium" name="size" value="Medium">
+            <label for="medium">Medium</label><br>
+            <input type="radio" id="large" name="size" value="Large">
+            <label for="large">Large</label>
+        </fieldset>
+        <fieldset>
+            <legend>Select Toppings:</legend>
+            <input type="checkbox" id="cheese" name="toppings" value="Cheese">
+            <label for="cheese">Cheese</label><br>
+            <input type="checkbox" id="pepperoni" name="toppings" value="Pepperoni">
+            <label for="pepperoni">Pepperoni</label><br>
+            <input type="checkbox" id="mushrooms" name="toppings" value="Mushrooms">
+            <label for="mushrooms">Mushrooms</label><br>
+            <input type="checkbox" id="olives" name="toppings" value="Olives">
+            <label for="olives">Olives</label>
+        </fieldset>
+        <button type="submit">Submit Order</button>
+    </form>
+    <h2>Order Summary</h2>
+    <p id="order-summary"></p>
+
+    <script>
+        document.getElementById('pizza-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get selected pizza size
+            const size = document.querySelector('input[name="size"]:checked').value;
+
+            // Get selected toppings
+            const toppings = Array.from(document.querySelectorAll('input[name="toppings"]:checked'))
+                                  .map(topping => topping.value);
+
+            // Display order summary
+            const summary = `You ordered a ${size} pizza with the following toppings: ${toppings.join(', ')}`;
+            document.getElementById('order-summary').textContent = summary;
+        });
+    </script>
+</body>
+</html>
